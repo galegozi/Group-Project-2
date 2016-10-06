@@ -30,7 +30,11 @@ public:
     {
         return "WOOF";
     }
-    ~
+    ~Canine()
+    {
+        Animal::~Animal();
+        count--;
+    }
 };
 class Feline:Animal
 {
@@ -43,6 +47,11 @@ public:
     string speak()
     {
         return "PURR";
+    }
+    ~Feline()
+    {
+        Animal::~Animal();
+        count--;
     }
 };
 class Dog:Canine
@@ -62,6 +71,11 @@ public:
     {
         return name;
     }
+    ~Dog()
+    {
+        count--;
+        Canine::~Canine();
+    }
 };
 class Wolf:Canine
 {
@@ -72,6 +86,11 @@ public:
     string howl()
     {
         return "HOWL";
+    }
+    ~Wolf()
+    {
+        count--;
+        Canine::~Canine();
     }
 };
 class Cat:Feline
@@ -90,6 +109,11 @@ public:
     string getName()
     {
         return name;
+    }
+    ~Cat()
+    {
+        count--;
+        ~Feline();
     }
 };
 int main()
